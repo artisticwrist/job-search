@@ -1,18 +1,8 @@
-<div class="job-box">
+<div class="job-box" style="width: max-content;">
     <div class="job-flex">
-        <h1 style="width:70%;">Create New Jobs</h1>
-        <p></p>
-        <div class="job-flex-items">
-            <div class="flex">
-                <p>' . $location . '</p>
-            </div>
-            <div class="flex">
-                <p>' . $specification . '</p>
-            </div>
-            <div class="flex">
-                <p>' . $salary . '</p>
-            </div>
-        </div>
-        <p>Job function : ' . $category . '</p>
+        <h1 style="margin:10px 5px;">Create New Job</h1>
+        <button class="create-job-btn" style="border: none; margin:10px 5px;"><a
+                href="../pages/create-jobs-form.php">Create
+                New
+                Job</a></button>
     </div>
-</div>

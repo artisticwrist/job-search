@@ -17,13 +17,13 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $password = validate($_POST['password']);
 
     if (empty($email)) {
-        header("Location: ../pages/login.php?error=Email is required");
+        header("Location: ../pages/login_admin.php?error=Admin Email is required");
         exit();
     } elseif (empty($password)) {
-        header("Location: ../pages/login.php?error=Password is required");
+        header("Location: ../pages/login_admin.php?error=Admin Password is required");
         exit();
     } else {
-        $sql = "SELECT * FROM users WHERE email=?";
+        $sql = "SELECT * FROM admin_log WHERE email=?";
         $stmt = $con->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -36,23 +36,23 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             if (password_verify($password, $hashed_password)) {
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['email'] = $row['email'];
-                $_SESSION['full_name'] = $row['full_name'];
+                $_SESSION['useername'] = $row['username'];
                 $_SESSION['password'] = $row['password'];
                 $_SESSION['employer_status'] = $row['employer_status'];
                 $_SESSION['subscribe_status'] = $row['subscribe_status'];
-                header("Location: ../pages/jobs.php");
+                header("Location: ../pages/admin.php");
                 exit();
             } else {
-                header("Location:  ../pages/login.php?error=Incorrect Email or Password");
+                header("Location:  ../pages/login_admin.php?error=Incorrect Email or Password");
                 exit();
             }
         } else {
-            header("Location:  ../pages/login.php?error=Incorrect Email or Password");
+            header("Location:  ../pages/login_admin.php?error=Incorrect Email or Password");
             exit();
         }
     }
 } else {
-    header("Location:  ../pages/login.php");
+    header("Location:  ../pages/login_admin.php");
     exit();
 }
 ?>

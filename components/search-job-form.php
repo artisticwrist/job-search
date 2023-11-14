@@ -10,8 +10,6 @@
         $search_exp = $_POST['experience'];
         $search_location = $_POST['locations'];
 
-        //job_name=$job_name,category=$job_industry,exp_level=$exp_level,job_location=$location 
-
         $sql = "SELECT * FROM `jobs` ORDER BY RAND()";
     
         $result = mysqli_query($con, $sql);
@@ -23,7 +21,7 @@
 
     
     ?>
-    <form action="../components/search-job-form.php" method="POST" class="search-job-header sticky-job-search">
+    <form action="../pages/jobs.php" method="POST" class="search-job-header sticky-job-search">
 
         <select name="jobs" id="">
             <option value="all-jobs">All job function</option>

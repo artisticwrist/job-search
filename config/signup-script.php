@@ -18,6 +18,7 @@ if(isset($_POST['submit'])){
                 $employer_status = $_POST['employer-status'];
                 $full_name = $_POST['full-name'];
                 $email = $_POST['email'];
+                $subscribe_status = 0;
                 
                 if(empty($full_name)){
                         header("Location: ../pages/signup.php?notMatch= please input full name");   
@@ -34,7 +35,7 @@ if(isset($_POST['submit'])){
                                 header("Location: ../pages/signup.php?notMatch=Email already exist");
                         }else{
                                 $passwordHash = password_hash($password, PASSWORD_DEFAULT);     
-                                $sql = "INSERT INTO users(full_name,email,employer_status,password) VALUES('$full_name', '$email', '$employer_status', '$passwordHash')";
+                                $sql = "INSERT INTO users(full_name,email,employer_status,subscribe_status,password) VALUES('$full_name', '$email', '$employer_status', '$subscribe_status','$passwordHash')";
                                 if($con->query($sql)){
                                         header("Location: ../pages/login.php?signup-msg= sign up successful !!. please login");
                                 }else{

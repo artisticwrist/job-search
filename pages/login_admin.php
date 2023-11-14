@@ -16,22 +16,12 @@
     ?>
     <section class="find-job-section">
         <h1 class="logo">Job search</h1>
-        <p style="color: #40514e70; margin:5px;">Log in your account</p>
-        <p style="color: #2F89FC; font-size:13px;margin:3px;">
-            <?php
-                if(isset($_GET['signup-msg'])){
-                    echo  $_GET['signup-msg'];
-                }elseif(isset($_GET['error'])){
-                    echo $_GET['error'];
-                }
+        <p style="color: #40514e70; margin:5px;">Log in Admin</p>
 
-                
-            ?>
-        </p>
         <!--log in user  -->
-        <form action="../config/login-script.php" method="POST" class="fill-form">
-            <input type="text" placeholder="email" name="email" class="text-input">
-            <input type="password" placeholder="password" name="password" class="text-input">
+        <form action="../config/login-admin-script.php" method="POST" class="fill-form">
+            <input type="text" placeholder="Admin Email" name="email" class="text-input">
+            <input type="password" placeholder="Admin password" name="password" class="text-input">
             <button type="submit" name="submit">Log in</button>
             <div class="form-box">
                 <div class="check-box">
@@ -41,7 +31,6 @@
                 <p><a href="">forgot password ?</a></p>
             </div>
         </form>
-        <p style="font-size: 14px;"><a href="../pages/login_admin.php" style="color:#2f89fc ;">Admin</a></p>
     </section>
     <?php
     require "../components/footer.php";
