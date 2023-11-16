@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
     $query = mysqli_query($con,$insert);
 
     if($query){
-        echo "inserted successfully";
+        echo "<script>  alert('Feedback submitted successfully');  </script>";
     }else{
         echo mysqli_error($con, $query);
     }
@@ -57,45 +57,31 @@ if(isset($_POST['submit'])){
 
                 </div>
                 <div class="layout-form">
-                    <form action="">
+                    <form action="../pages/contact.php" method="POST">
                         <h1>Contact Us</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         <div class="form-box">
                             <p>Full Name</p>
-                            <input type="text" placeholder="">
+                            <input type="text" placeholder="" name="full_name">
                         </div>
                         <div class="form-box">
                             <p>Email</p>
-                            <input type="text" placeholder="">
+                            <input type="email" placeholder="" name="email">
                         </div>
                         <div class="form-box">
                             <p>Message</p>
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                            <textarea id="" cols="30" rows="10" name="feedback"></textarea>
                         </div>
-                        <button>submit</button>
+                        <button type="submit" name="submit">submit</button>
                     </form>
                 </div>
             </div>
     </section>
-
-    <!-- <section class="find-job-section">
-        <h1 class="logo">Job search</h1>
-        <p style="color: #40514e70; margin:5px;">Send us a message today</p>
-        <p class="color: red; font-size:13px;margin:3px;">
-            <?php
-                if(isset($_GET['notMatch'])){
-                    echo  $_GET['notMatch'];
-                }
-            ?>
-        </p>
-
-        <form action="../pages/contact.php" method="POST" class="fill-form">
-            <input type="text" placeholder="full name" name="full_name" class="text-input">
-            <input type="text" placeholder="email" name="email" class="text-input">
-            <textarea name="feedback" id="" cols="30" rows="10" placeholder="write message"></textarea>
-            <button name="submit" type="submit">send message</button>
-        </form>
-    </section> -->
+    <?php
+                // if(isset($_GET['notMatch'])){
+                //     echo  $_GET['notMatch'];
+                // }
+    ?>
     <?php
     require "../components/footer.php";
     ?>

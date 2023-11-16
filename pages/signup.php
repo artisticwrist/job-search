@@ -27,7 +27,7 @@
 
         <form action="../config/signup-script.php" method="POST" class="fill-form">
             <input type="text" placeholder="full name" name="full-name" class="text-input">
-            <input type="text" placeholder="email" name="email" class="text-input">
+            <input type="email" placeholder="email" name="email" class="text-input">
             <select name="employer-status" id="" class="signup-option">
                 <option value="0">User</option>
                 <option value="1">Employer</option>

@@ -1,7 +1,7 @@
 <?php
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    require "../connect/connect.php";
+    include "../connect/connect.php";
     session_start();
 
 
@@ -24,113 +24,73 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
-<section class="admin-section">
-    <div class="admin-nav">
-        <h3>Job-search</h3>
-        <ul>
-            <li onclick="showAllUsersAdmin()">All users</li>
-            <li onclick="showAllRequestAdmin()">Subscribe request</li>
-            <li onclick="showAllFeedbackAdmin()">Feedbacks</li>
-            <li><a href="../pages/create-jobs-form.php">Create a Job</a></li>
-            <li><a href="../pages/create-admin.php">Create New Admin</a></li>
-        </ul>
+<body class="admin-body">
+    <div class="admin-nav-dashboard side-nav">
+        <a class="navbar-brand text-bold" href="#">Job Search</a>
 
-
-        <button class="create-job-btn"><a href="../config/logout.php">logout</a></button>
-    </div>
-
-    <div class="admin-nav admin-nav-mobile">
-        <h1>Job-search</h1>
-        <ul>
-            <li onclick="showAllUsersAdmin()">All users</li>
-            <li onclick="showAllRequestAdmin()">Subscribe request</li>
-            <li onclick="showAllFeedbackAdmin()">Feedbacks</li>
-            <li><a href="../pages/create-jobs-form.php">Create a Job</a></li>
-        </ul>
-
-
-        <button class="create-job-btn"><a href="../config/logout.php">logout</a></button>
-    </div>
-    <div class="admin-body">
-
-
-        <h1>Welcome Admin <span style="  color: #30e3ca;">Username</span></h1>
-
-        <div style="display:flex; justify-content:space-between; align-items:center;margin-top: 30px;">
-            <h1>Overview</h1>
-            <!-- ham-burger -->
-            <div class="ham-burger burger-admin" style="margin-right:30px;" onclick="showAdminNav()">
-                <div class="burger"></div>
-                <div class="burger"></div>
-                <div class="burger"></div>
-            </div>
+        <div class="side-nav-options">
+            <p><a href="../pages/admin.php">Home</a></p>
+            <p><a href="../pages/admin/all-users-admin.php">All Users</a></p>
+            <p><a href="../pages/admin/sub-request.php">Subscribe Request</a></p>
+            <p><a href="../pages/create-admin.php">Create Admin</a></p>
+            <p><a href="../pages/create-jobs-form.php">Create Job</a></p>
+            <p><a href="../pages/admin/feedback.php">Feedback</a></p>
+            <p><a href="../config/logout.php">Logout</a></p>
         </div>
+    </div>
 
-        <div class="overview display-non" onclick="closeAdminNav()">
-            <div class="overview-flex first-child">
-                <p>
-                    <b>
-                        <?php
-                                // SQL query to count the number of rows in the table
-                                $query = "SELECT COUNT(*) as row_count FROM users";
 
-                                // Execute the query
-                                $result = mysqli_query($con, $query);
+    <div class="admin-dashboard">
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Job Search</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
 
-                                // Check if the query was successful
-                                if ($result) {
-                                    // Fetch the row count from the result
-                                    $row = mysqli_fetch_assoc($result);
-                                    $rowCount = $row['row_count'];
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Create Job</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Admin name
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Create Admin</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
 
-                                    // Output the number of rows
-                                    echo $rowCount;
-
-                                    // Close the result set
-                                    mysqli_free_result($result);
-                                } else {
-                                    // Handle the query error if necessary
-                                    echo "Error: " . mysqli_error($conn);
-                                }
-                            ?>
-                    </b>
-                </p>
-                <p>Total Users</p>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
             </div>
-            <div class="overview-flex">
-                <p>
-                    <b>
-                        <?php
-                                // SQL query to count the number of rows in the table
-                                $query = "SELECT COUNT(*) as row_count FROM sub_request";
-
-                                // Execute the query
-                                $result = mysqli_query($con, $query);
-
-                                // Check if the query was successful
-                                if ($result) {
-                                    // Fetch the row count from the result
-                                    $row = mysqli_fetch_assoc($result);
-                                    $rowCount = $row['row_count'];
-
-                                    // Output the number of rows
-                                    echo $rowCount;
-
-                                    // Close the result set
-                                    mysqli_free_result($result);
-                                } else {
-                                    // Handle the query error if necessary
-                                    echo "Error: " . mysqli_error($conn);
-                                }
-                            ?>
-                    </b>
-                </p>
-                <p>Payment Verification</p>
+        </nav>
+        <div class="dashboard-header">
+            <div>
+                <p>Dashboard</p>
+                <p>Lorem Ipsum Totem</p>
             </div>
-            <div class="overview-flex">
-                <p>
-                    <b>
-                        <?php
+            <a>
+                Google Language
+            </a>
+        </div>
+        <div class="admin-flex">
+            <div class="admin-flex-item overview">
+                <div class="box" style="background: royalblue;">
+                    <p>Jobs Posted</p>
+                    <?php
                                 // SQL query to count the number of rows in the table
                                 $query = "SELECT COUNT(*) as row_count FROM jobs";
 
@@ -152,15 +112,39 @@
                                     // Handle the query error if necessary
                                     echo "Error: " . mysqli_error($conn);
                                 }
-                            ?>
-                    </b>
-                </p>
-                <p>Job Openings </p>
-            </div>
-            <div class="overview-flex">
-                <p>
-                    <b>
-                        <?php
+                        ?>
+                    <p style="font-size: 13px;">This includes premuim/free Jobs</p>
+                </div>
+                <div class="box" style="background: orangered;">
+                    <p>Users</p>
+                    <?php
+                                // SQL query to count the number of rows in the table
+                                $query = "SELECT COUNT(*) as row_count FROM users";
+
+                                // Execute the query
+                                $result = mysqli_query($con, $query);
+
+                                // Check if the query was successful
+                                if ($result) {
+                                    // Fetch the row count from the result
+                                    $row = mysqli_fetch_assoc($result);
+                                    $rowCount = $row['row_count'];
+
+                                    // Output the number of rows
+                                    echo $rowCount;
+
+                                    // Close the result set
+                                    mysqli_free_result($result);
+                                } else {
+                                    // Handle the query error if necessary
+                                    echo "Error: " . mysqli_error($conn);
+                                }
+                        ?>
+                    <p style="font-size: 13px;">This includes subscribed/unsubscribed users</p>
+                </div>
+                <div class="box" style="background: dodgerblue;">
+                    <p>Feedbacks</p>
+                    <?php
                                 // SQL query to count the number of rows in the table
                                 $query = "SELECT COUNT(*) as row_count FROM feedback";
 
@@ -182,108 +166,134 @@
                                     // Handle the query error if necessary
                                     echo "Error: " . mysqli_error($conn);
                                 }
-                            ?>
-                    </b>
+                        ?>
+                    <p style="font-size: 13px;">Messages sent through contact page</p>
+                </div>
+                <div class="box" style="background: darkseagreen;">
+                    <p>Sub Request</p>
+                    <?php
+                                // SQL query to count the number of rows in the table
+                                $query = "SELECT COUNT(*) as row_count FROM sub_request";
+
+                                // Execute the query
+                                $result = mysqli_query($con, $query);
+
+                                // Check if the query was successful
+                                if ($result) {
+                                    // Fetch the row count from the result
+                                    $row = mysqli_fetch_assoc($result);
+                                    $rowCount = $row['row_count'];
+
+                                    // Output the number of rows
+                                    echo $rowCount;
+
+                                    // Close the result set
+                                    mysqli_free_result($result);
+                                } else {
+                                    // Handle the query error if necessary
+                                    echo "Error: " . mysqli_error($conn);
+                                }
+                        ?>
+                    <p style="font-size: 13px;">Employer subscribe requests</p>
+                </div>
+            </div>
+            <div class="admin-flex-item">
+                <p><b>Total Users</b>
+                <p>
+                <p style="font-size: 13px;">
+                    <?php
+                                // SQL query to count the number of rows in the table
+                                $query = "SELECT COUNT(*) as row_count FROM users";
+
+                                // Execute the query
+                                $result = mysqli_query($con, $query);
+
+                                // Check if the query was successful
+                                if ($result) {
+                                    // Fetch the row count from the result
+                                    $row = mysqli_fetch_assoc($result);
+                                    $rowCount = $row['row_count'];
+
+                                    // Output the number of rows
+                                    echo $rowCount;
+
+                                    // Close the result set
+                                    mysqli_free_result($result);
+                                } else {
+                                    // Handle the query error if necessary
+                                    echo "Error: " . mysqli_error($conn);
+                                }
+                        ?>
+                    Total Users
                 </p>
-                <p>Feedback Messages</p>
+                <div class="list-items">
+                    <div class="list-item-head">
+                        <p>Profile</p>
+                        <p>Status</p>
+                        <p>Subscription</p>
+                        <P>Action</P>
+                    </div>
+
+                    <?php
+                require '../pages/admin/all-users-admin.php';
+                ?>
+                </div>
             </div>
         </div>
+        <div class="admin-flex">
+            <div class="admin-flex-item">
+                <p><b>Sub Request</b>
+                <p>
+                <p style="font-size: 13px;">
+                    <?php
+                                // SQL query to count the number of rows in the table
+                                $query = "SELECT COUNT(*) as row_count FROM sub_request";
 
-        <section class="admin-all-users-active display-non" id="all-users-admin" onclick="closeAdminNav()">
-            <div style="display: flex; align-items:center; margin:10px 0px;">
-                <h1>Job-search users</h1>
-                <p style="font-size: 13px; margin:10px 0px; color:silver;">1200 active users</p>
-            </div>
+                                // Execute the query
+                                $result = mysqli_query($con, $query);
+
+                                // Check if the query was successful
+                                if ($result) {
+                                    // Fetch the row count from the result
+                                    $row = mysqli_fetch_assoc($result);
+                                    $rowCount = $row['row_count'];
+
+                                    // Output the number of rows
+                                    echo $rowCount;
+
+                                    // Close the result set
+                                    mysqli_free_result($result);
+                                } else {
+                                    // Handle the query error if necessary
+                                    echo "Error: " . mysqli_error($conn);
+                                }
+                            ?> Requests</p>
+                <div class="list-items">
+                    <div class="list-item-head">
+                        <p>Profile</p>
+                        <p>Slip</p>
+                        <p>Date paid</p>
+                        <P>Action</P>
+                    </div>
+
+                    <?php
+                        require '../pages/admin/sub-request.php';
+                    ?>
 
 
-            <!-- all user list -->
-            <section class="list-users-dashbooard">
-                <div class="list-dashboard-head">
-                    <div class="dashboard-head s-n">
-                        <h3>S/N</h3>
-                    </div>
-                    <div class="dashboard-head">
-                        <h3>Name</h3>
-                    </div>
-                    <div class="dashboard-head">
-                        <h3>Status</h3>
-                    </div>
-                    <div class="dashboard-head">
-                        <h3>Subcribtion</h3>
-                    </div>
-                    <div class="dashboard-head">
-                        <h3>Date</h3>
-                    </div>
-                    <div class="dashboard-head">
-                        <h3>Actions</h3>
-                    </div>
                 </div>
-
+            </div>
+            <div class="admin-flex-item">
+                <p><b>Feedbacks</b></p>
                 <?php
-                require '../components/all-users-admin.php';
+                    require '../pages/admin/feedback.php';
                 ?>
-
-            </section>
-
-        </section>
-
-        <!--  subrcibe request container-->
-        <section class="admin-sub-request-active display-none" id="all-request-admin" onclick="closeAdminNav()">
-            <div style="display: flex; align-items:center; margin:10px 0px;">
-                <h1>Subscribe request</h1>
-                <p style="font-size: 13px; margin:10px 0px; color:silver;">10 request</p>
             </div>
-
-            <section class="list-users-dashbooard ">
-                <div class="list-dashboard-head">
-                    <div class="dashboard-head">
-                        <h3>email</h3>
-                    </div>
-                    <div class="dashboard-head">
-                        <h3>payment</h3>
-                    </div>
-                    <div class="dashboard-head">
-                        <h3>Date</h3>
-                    </div>
-                    <div class="dashboard-head">
-                        <h3>Actions</h3>
-                    </div>
-                </div>
-
-
-                <?php
-                        require '../components/sub-request.php';
-                    ?>
-
-            </section>
-
-        </section>
-
-        <section class="admin-feedback-active display-none" id="all-feedback-admin" onclick="closeAdminNav()">
-            <!-- feedback -->
-            <div style="display: flex; align-items:center; margin:10px 0px;">
-                <h1>feedbacks</h1>
-                <p style="font-size: 13px; margin:10px 0px; color:silver;">20 messages</p>
-            </div>
-            <div class="job-container feedback">
-
-                <?php
-                    require '../components/feedback.php';
-                    ?>
-
-            </div>
-
-        </section>
-
-
-    </div>
-</section>
-
-
-<script src="../js/app.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-</script>
+        </div>
+        <script src="../js/app.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
 </body>
 
 </html>

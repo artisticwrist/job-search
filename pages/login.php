@@ -30,7 +30,7 @@
         </p>
         <!--log in user  -->
         <form action="../config/login-script.php" method="POST" class="fill-form">
-            <input type="text" placeholder="email" name="email" class="text-input">
+            <input type="email" placeholder="email" name="email" class="text-input">
             <input type="password" placeholder="password" name="password" class="text-input">
             <button type="submit" name="submit">Log in</button>
             <div class="form-box">

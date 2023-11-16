@@ -9,14 +9,25 @@
     if(isset($_SESSION['email']) && isset($_SESSION['password'])){
         $active = true;
     }
+
+    if(isset($_SESSION['subscribe_status'])){
+        
+        if($_SESSION['subscribe_status'] == 1){
+            $subcriber = true;
+        } 
+         
+    }
      
-    if($_SESSION['subscribe_status'] == 1){
-        $subcriber = true;
+
+    if(isset($_SESSION['employer_status'])){
+        
+        if($_SESSION['employer_status'] == 1){
+            $employer = true;
+        }
+        
     }
 
-    if($_SESSION['employer_status'] == 1){
-        $employer = true;
-    }
+
 ?>
 <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid">
@@ -126,10 +137,10 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Username
+                        <?php   echo $_SESSION['full_name'];   ?>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="../pages/edit-profile.php">Profile</a></li>
                         <li><a class="dropdown-item" href="../config/logout.php">Logout</a></li>
                     </ul>
                 </li>

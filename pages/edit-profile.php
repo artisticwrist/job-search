@@ -17,7 +17,11 @@ if(isset($_GET['deleteid'])){
     if($result){
       
         echo "<script>alert('Account Deleted Successful!');</script>";
-        echo "<script>setTimeout(function(){window.location.href='../pages/login.php?signup-msg=account deleted successfully'},500);</script>";
+        
+        echo "<script>setTimeout(function(){window.location.href='../pages/admin.php?'},300);</script>";
+        session_unset();
+        session_destroy();
+
     }else{
         die(mysqli_error($con));
     }
