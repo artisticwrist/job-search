@@ -102,5 +102,5 @@
             <option value="executive-level">EXecutive level</option>
         </select>
 
-        <button name="submit" type="submit">Find a Job</button>
+        <button name="submit" class=" btn btn-primary" type="submit">Find a Job</button>
     </form>

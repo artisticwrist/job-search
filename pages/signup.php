@@ -1,3 +1,17 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+require "../connect/connect.php";
+// Get the current page URL
+$page_url = $_SERVER['REQUEST_URI'];
+
+// Update the page visit count in the database
+$sql = "INSERT INTO page_visits (page_url, visit_count) 
+        VALUES ('$page_url', 1) 
+        ON DUPLICATE KEY UPDATE visit_count = visit_count + 1";
+$con->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,14 +44,16 @@
             <input type="email" placeholder="email" name="email" class="text-input">
             <select name="employer-status" id="" class="signup-option">
                 <option value="0">User</option>
-                <option value="1">Employer</option>
+                <option value="0">Employer</option>
             </select>
 
-
+            <input type="text" placeholder="referral code (optional)" name="referral" class="text-input">
             <input type="password" placeholder="password (more than 7 values)" name="password" class="text-input">
             <input type="password" placeholder="re enter password" name="password-check" class="text-input">
             <button name="submit" type="submit">sign up</button>
         </form>
+        <p style="font-size: 14px;">Already have an account ? <a href="../pages/login.php"
+                class="text-primary text-decoration-none">Log in</a></p>
     </section>
     <?php
     require "../components/footer.php";

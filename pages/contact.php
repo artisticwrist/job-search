@@ -1,26 +1,62 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 require "../connect/connect.php";
-//records and stores user feedback message from contact form
 
-if(isset($_POST['submit'])){
+// Get the current page URL
+$page_url = $_SERVER['REQUEST_URI'];
+
+// Update the page visit count in the database
+$sql = "INSERT INTO page_visits (page_url, visit_count) 
+        VALUES ('$page_url', 1) 
+        ON DUPLICATE KEY UPDATE visit_count = visit_count + 1";
+$con->query($sql);
+
+
+// require 'vendor/autoload.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get form data
     $full_name = $_POST['full_name'];
     $email = $_POST['email'];
-    $feedback = $_POST['feedback'];
+    $message = $_POST['feedback'];
 
-    $insert = "INSERT INTO feedback (full_name,email,feedback) VALUES ('$full_name', '$email', '$feedback')";
+    // Create a new PHPMailer instance
+    $mail = new PHPMailer(true);
 
-    $query = mysqli_query($con,$insert);
+    try {
+        // Server settings
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'contactdev.bigjoe@gmail.com';
+        $mail->Password   = 'kingjay'; // Use your App Password here
+        $mail->SMTPSecure = 'tls';
+        $mail->Port       = 587;
 
-    if($query){
-        echo "<script>  alert('Feedback submitted successfully');  </script>";
-    }else{
-        echo mysqli_error($con, $query);
+        // Recipients
+        $mail->setFrom($email, $full_name);
+        $mail->addAddress('contactdev.bigjoe@gmail.com');
+
+        // Content
+        $mail->isHTML(false);
+        $mail->Subject = 'New Contact Form Submission';
+        $mail->Body    = "Full Name: $full_name\nEmail: $email\nMessage:\n$message";
+
+        // Send email
+        $mail->send();
+        echo '<script>alert("Message sent successfully!");</script>';
+    } catch (Exception $e) {
+        echo '<script>alert("Failed to send message. Error: ' . $mail->ErrorInfo . '");</script>';
     }
 }
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,8 +93,8 @@ if(isset($_POST['submit'])){
 
                 </div>
                 <div class="layout-form">
-                    <form action="../pages/contact.php" method="POST">
-                        <h1>Contact Us</h1>
+                    <form action="#" method="POST">
+                        <h3>Contact Us</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         <div class="form-box">
                             <p>Full Name</p>
@@ -70,18 +106,14 @@ if(isset($_POST['submit'])){
                         </div>
                         <div class="form-box">
                             <p>Message</p>
-                            <textarea id="" cols="30" rows="10" name="feedback"></textarea>
+                            <textarea id="" name="feedback"></textarea>
                         </div>
-                        <button type="submit" name="submit">submit</button>
+                        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                     </form>
                 </div>
             </div>
     </section>
-    <?php
-                // if(isset($_GET['notMatch'])){
-                //     echo  $_GET['notMatch'];
-                // }
-    ?>
+
     <?php
     require "../components/footer.php";
     ?>

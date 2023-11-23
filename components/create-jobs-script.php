@@ -27,12 +27,23 @@ if(isset($_POST['submit'])){
         $company_logo = 'profile.jpg';
         $how_to_apply = $_POST['how_to_apply'];
 
+        $admin = null;
 
+        if(isset($_GET['admin'])){
+            $admin = 1;
+        }
+
+
+        if($admin == 1){
+            $status = 1;
+        }elseif ($admin == 0) {
+            $status = 0;
+        }
 
         $sql = "INSERT INTO jobs(job_name, company,job_type, job_location, category,summary, salary, specification,requirements,
-        responsibility,qualification,exp_level,years_of_exp,company_logo,how_to_apply)
+        responsibility,qualification,exp_level,years_of_exp,company_logo,how_to_apply, status)
         VALUES('$title','$company','$job_type','$location','$category','$summary','$salary','$specification','$requirements','$responsibility','$qualification','$exp_level
-        ','$years_exp ','$company_logo','$how_to_apply' )";
+        ','$years_exp ','$company_logo','$how_to_apply' , '$status')";
 
         $query = mysqli_query($con, $sql);
 

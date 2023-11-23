@@ -11,10 +11,12 @@ require "../connect/connect.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel='stylesheet' type='text/css' media='screen' href='../css/style.css'>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
-<body style="padding: 20px;">
+<body>
     <?php
     require "../components/nav.php";
     ?>
@@ -116,6 +118,8 @@ if ($result) {
             }
                 echo '</div><p>'.$job_type.'</p>
             </div>
+
+            <button class="btn btn-primary" style="width:150px;"><a class="text-white text-decoration-none" href="../pages/jobs.php">Back to Jobs</a></button>
         </div>
 
         ';
@@ -126,106 +130,13 @@ if ($result) {
     <?php
     require "../components/footer.php";
     ?>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
 </body>
 
 
 </html>
-<!-- 
-if(isset($_SESSION['email']) && isset($_SESSION['password'])){ -->
-
-
-
-<!-- 
-<div class="job-box" name="showFullDetail">
-    <div class="premium-free">'.$job_type.'</div>
-    <div class="job-flex">
-        <h1 style="width:70%;">' .$job_name.'</h1>
-        <p class="company">';
-
-            if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
-            echo $company;
-            } else {
-            echo null;
-
-            }
-
-            echo '</p>
-        <div class="job-flex-items">
-            <div class="flex">
-                <p>'.$location.'</p>
-            </div>
-            <div class="flex">
-                <p>'.$specification.'</p>
-            </div>
-            <div class="flex">
-                <p>'.$salary.'</p>
-            </div>
-        </div>
-        <p class="company">Job function : '.$category.'</p>
-    </div>
-
-    <hr>
-
-    <p class="time-posted">'.$date_uploaded.'</p>
-
-    <hr>
-
-    <div class="job-flex" style="display: flex; align-items: center;">
-        <div class="company-logo">
-            <img src="" alt="">
-        </div>
-        <div class="job-summary">
-            <p>'.$summary.'</p>
-        </div>
-    </div>
-
-    <hr>
-
-    <div class="job-flex">
-        <h3 class="company">Requirements</h3>
-        <p class="company">'.$requirements.'</p>
-    </div>
-
-    <hr>
-
-    <div class="job-flex">
-        <h3 class="company">Responsilibity</h3>
-        <p class="company">'.$responsibility.'</p>
-    </div>
-    <hr>
-
-    <div class="job-flex">
-        <h3 class="company">How to apply</h3>
-        <p class="company">';
-
-            if($_SESSION['employer_status'] === 1){
-            if(isset($_SESSION['email']) && isset($_SESSION['password'])){
-            echo "
-            <button class='explore-btn'>
-                <a href='../config/logout.php'>sign up for premium</a>
-            </button>
-            ";
-            }else{
-            echo "
-            <button class='explore-btn'>
-                <a href='../pages/signup.php'>sign up for premium</a>
-            </button>";
-            }
-
-            }else{
-            if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
-            echo $apply;
-            } else {
-            if($job_type == 'premium'){
-            echo "<button class='explore-btn'><a href='../pages/signup.php'>sign up for premium</a></button>";
-            }else{
-            echo $apply;
-            }
-            }
-            }
-
-
-            echo '
-        </p>
-    </div>
-</div> -->

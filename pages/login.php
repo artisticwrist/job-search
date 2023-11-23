@@ -1,3 +1,17 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+require "../connect/connect.php";
+// Get the current page URL
+$page_url = $_SERVER['REQUEST_URI'];
+
+// Update the page visit count in the database
+$sql = "INSERT INTO page_visits (page_url, visit_count) 
+        VALUES ('$page_url', 1) 
+        ON DUPLICATE KEY UPDATE visit_count = visit_count + 1";
+$con->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +55,9 @@
                 <p><a href="">forgot password ?</a></p>
             </div>
         </form>
-        <p style="font-size: 14px;"><a href="../pages/login_admin.php" style="color:#2f89fc ;">Admin</a></p>
+        <p style="font-size: 14px;">Don't have an account yet ? <a href="../pages/signup.php"
+                class="text-primary text-decoration-none">Sign up</a></p>
+        <p style="font-size: 14px;"><a href="../admin/login_admin.php" style="color:#2f89fc ;">Admin</a></p>
     </section>
     <?php
     require "../components/footer.php";

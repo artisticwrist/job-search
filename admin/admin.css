@@ -1,0 +1,383 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.display-none{
+    display: none !important;
+}
+
+
+.view-full-screen{
+    position: absolute !important;
+    top: 0% !important;
+    left: 0% !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0px !important;
+    border-radius: 0px !important;
+}
+
+nav{
+    height: 7vh;
+    background: rgb(63, 63, 63);
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    align-items: center;
+    padding: 0px 20px;
+}
+
+nav .logo{
+    font-size: 30px;
+}
+
+nav img{
+    width: 18px;
+}
+
+nav .nav-box{
+    display: flex;
+}
+
+nav .burger-nav{
+    margin: 0px 35px;
+}
+
+
+.nav-box .item{
+    display: flex;
+    align-items: center;
+    height: inherit;
+    margin: 0px 5px;
+}
+
+.nav-box .item :nth-child(n){
+    margin: 0px 5px;
+}
+
+
+.admin-section{
+    display: flex;
+    height: max-content;
+}
+
+.admin-side-nav{
+    width: 17%;
+    height: 93vh;
+    background: rgb(63, 63, 63);
+}
+.side-nav-list{
+    margin-top: 50px;
+    margin-left: 20px;
+}
+
+.side-nav-list p{
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+} 
+
+.side-nav-list p a{
+    text-decoration: none;
+    color: white;
+}
+
+.side-nav-list p img{
+    margin: 0px 5px;
+    width: 15px;
+}
+
+.admin-body, .admin-jobs, .admin-users, .create-admin-container{
+    width: 83%;
+    height: 93vh;
+    background: rgb(238, 238, 238);
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+.create-admin-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.serach-create{
+    width: 100%;
+    display: flex;
+    height: 48px;
+    align-items: center;
+    background: white;
+}
+
+.serach-create :nth-child(n){
+    margin: 0px 5px;
+    height: 40px;
+}
+
+.serach-create input{
+    width: 200px;
+    height: 50px;
+    border: 1px solid silver;
+    border-radius: 10px;
+    padding: 0px 5px;
+}
+
+.dashboard-admin{
+    display: flex;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+.dashboard-admin :nth-child(2){
+    margin: 0px 5px;
+}
+
+
+.overview-box{
+    width: 100%;
+    display: flex;
+    margin: 10px 0px;
+}
+
+.overview-box .overview{
+    flex-grow: 1;
+    margin: 0px 5px;
+    color: white;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    padding: 20px;
+    border-radius:5px;
+}
+.overview p{
+    padding: 0;
+    margin: 0;
+}
+
+.overview :first-child{
+    font-size: 30px;
+}
+
+
+.admin-box{
+    width: 100%;
+    display: flex;
+}
+
+.admin-box .flex{
+    width: 50%;
+    margin: 10px;
+    background: white;
+    height: 65vh;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.admin-box .admin-dashboard-item-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-dashboard-item-header-item{
+    display: flex;
+}
+
+.admin-dashboard-item-header-item :nth-child(n){
+    margin: 0px  5px;
+}
+
+.admin-dashboard-item-header-item img{
+    cursor: pointer;
+    width: 20px;
+}
+
+.flex .list{
+    width: 100%;
+}
+
+.list-header{
+    display: flex;
+    font-size: 13px;
+    color: silver;
+    width: 100%;
+}
+
+.list .list-header :first-child{
+ width: 10%;
+}
+
+.list-header .w-flex{
+    width: 65% ;
+}
+
+.list .list-header :last-child{
+ width: 25% ;
+}
+
+
+.overflowScroll{
+    height: 42vh;
+    overflow-y: scroll;
+}
+
+.approved{
+    background: dodgerblue !important;
+    width: max-content;
+    padding: 0px 5px;
+    color: white;
+    margin: 0;
+    font-size: 13px;
+}
+
+th{
+    color: silver !important;
+    font-size: 14px;
+}
+
+
+.operation-items{
+    display: flex;
+}
+
+.operation-items button{
+    margin: 0px 5px;
+}
+
+.operation-items button img{
+    width: 15px !important;
+}
+
+table button{
+    height:40px !important; 
+}
+
+
+
+table button img{
+    width: 25px !important;
+}
+
+table th{
+    font-size: 13px !important;
+    color: silver;
+    font-weight: normal !important;
+}
+
+td{
+    font-size: 15px !important;
+    color: gray !important;
+}
+
+.overflow-scroll-list{
+    height: 45vh !important;
+    overflow-y: scroll;
+}
+
+.svg-check{
+    width: 25px !important;
+}
+
+
+.modal-admin, .modal-confirmation{
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    position: absolute !important;
+    top: 0% !important;
+    left: 0% !important;
+    width: 100% !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.664) !important;
+    z-index: 9999 !important;
+}
+
+.modal-admin img{
+    width: 300px;
+}
+
+.find-job-section {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  padding: 20px 60px;
+  margin: 20px 0px;
+}
+
+.find-job-section button {
+  margin-top: 40px;
+}
+
+form.fill-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fill-form a {
+  color: #2f89fc;
+}
+
+.fill-form .signup-option {
+  width: 300px;
+  padding: 15px;
+  border-radius: 30px;
+}
+
+.fill-form :nth-child(n) {
+  margin: 10px 0px;
+}
+
+.fill-form p {
+  font-size: 14px;
+}
+
+.fill-form .form-box {
+  display: flex;
+  justify-content: space-between;
+  width: 280px;
+}
+
+.fill-form input.text-input, .fill-form select {
+  width: 300px;
+  padding: 15px;
+  border-radius: 20px;
+  border: none;
+  color: gray;
+  background: rgb(224, 224, 224);
+}
+
+.form-box .check-box {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.form-box .check-box p {
+  margin-left: 5px;
+}
+
+.fill-form textarea {
+  width: 300px;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.fill-form button {
+  font-size: 16px;
+  width: 300px;
+  height: 45px;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  background: #2f89fc;
+}

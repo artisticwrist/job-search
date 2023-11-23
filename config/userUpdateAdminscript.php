@@ -28,7 +28,7 @@ include '../connect/connect.php';
     // Execute the SQL query
     if (mysqli_query($con, $sql)) {
         echo "<script>alert('Update Successful. Login again!');</script>";
-        echo "<script>setTimeout(function(){window.location.href='../pages/admin.php?signup-msg=edit profile complete. login again'},500);</script>";
+        echo "<script>setTimeout(function(){window.location.href='../pages/super-admin.php?signup-msg=edit profile complete. login again'},500);</script>";
         exit();
     } else {
         echo "<script>alert('Error updating record: " . mysqli_error($con) . "');</script>";

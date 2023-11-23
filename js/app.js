@@ -162,3 +162,20 @@ function stepTwo() {
   reviewJobForm.classList.remove("display-none");
 }
 
+function closeProfileHead() {
+  const profileHead = document.querySelector(".welcome-user");
+
+
+  profileHead.classList.add("display-none");
+}
+
+const navUser = document.querySelector(".side-user-nav");
+
+function showNavUser() {
+  navUser.classList.remove('display-none');
+  navUser.style.display = 'flex';
+}
+
+function closeNavUser() {
+  navUser.classList.add("display-none");
+}

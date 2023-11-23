@@ -57,39 +57,28 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Job Seekers
+                        Education
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">CV Review servcies</a></li>
-                        <li><a class="dropdown-item" href="#">Job vacanies</a></li>
+                        <li><a class="dropdown-item" href="#">Courses</a></li>
+                        <li><a class="dropdown-item" href="#">About Courses</a></li>
                         <li><a class="dropdown-item" href="#">Soft skill training</a></li>
-                        <li><a class="dropdown-item" href="#">Job search advice</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Job search advice</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Employerss
+                        About Us
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">CV Review servcies</a></li>
-                        <li><a class="dropdown-item" href="#">Job vacanies</a></li>
-                        <li><a class="dropdown-item" href="#">Soft skill training</a></li>
-                        <li><a class="dropdown-item" href="#">Job search advice</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Job search advice</a></li>
+                        <li><a class="dropdown-item" href="../pages/about.php">About Us</a></li>
+                        <li><a class="dropdown-item" href="#">Our Goal</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Contact us
+                        Contact Us
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../pages/contact.php">Send us a message</a></li>
@@ -118,19 +107,6 @@
             <?php           
              }elseif($active == true){
 
-
-                if($subcriber == null){
-                    
-            ?>
-
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <button class="nav-item btn-primary btn">
-                    <a href="../pages/signup.php" class="text-light text-decoration-none">Subscribe</a>
-                </button>
-            </ul>
-
-            <?php
-                }elseif($subcriber == true){
             ?>
 
             <ul class="navbar-nav mb-2 mb-lg-0">
@@ -141,6 +117,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../pages/edit-profile.php">Profile</a></li>
+                        <li><a class="dropdown-item" href="../pages/upload-slip.php">Upload Payment</a></li>
                         <li><a class="dropdown-item" href="../config/logout.php">Logout</a></li>
                     </ul>
                 </li>
@@ -148,7 +125,6 @@
 
             <?php
                 }
-            }
             ?>
 
 

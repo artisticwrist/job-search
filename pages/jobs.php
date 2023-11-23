@@ -3,6 +3,15 @@
 require "../connect/connect.php";
 session_start();
 
+// Get the current page URL
+$page_url = $_SERVER['REQUEST_URI'];
+
+// Update the page visit count in the database
+$sql = "INSERT INTO page_visits (page_url, visit_count) 
+        VALUES ('$page_url', 1) 
+        ON DUPLICATE KEY UPDATE visit_count = visit_count + 1";
+$con->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +27,7 @@ session_start();
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="job-section">
 
     <!-- navigaton bar sticked to the top of page-->
     <?php
@@ -33,21 +42,26 @@ session_start();
     if (isset($_SESSION['email']) && isset($_SESSION['password']) ) {
     ?>
     <section class="welcome-user">
-        <h1>Welcome <?php echo $_SESSION['full_name'] ?></h1>
-        <p><?php echo $_SESSION['email'] ?> | <a href="../config/logout.php">Logout account</a></p>
+        <div class="close-profile-user" onclick="closeProfileHead()">
+            <img src="../images/svg/close.svg" alt="">
+        </div>
         <div style="display: flex; align-items:center;">
-            <a href="../pages/edit-profile.php" style="text-decoration:underline; color:#ffff">Edit
-                Profile</a>
-            <?php
+            <h1>Welcome <?php echo $_SESSION['full_name'] ?></h1>
+            <img src="../images/svg/ham-burger.svg" alt="" style="cursor:pointer;margin-left: 15px; width:25px;"
+                onclick="showNavUser()">
+        </div>
+        <p><?php echo $_SESSION['email'] ?></p>
+
+
+        <?php
         if($_SESSION['subscribe_status'] == 0){
             ?>
-            <li class="create-job-btn" style="list-style-type:none ; margin-left:30px;"><a
-                    href="../pages/subscribe.php">Subscribe</a>
-            </li>
-            <?php
+        <li class="btn btn-primary " style="list-style-type:none ;"><a class="text-white text-decoration-none"
+                href="../pages/subscription.php">Subscribe</a>
+        </li>
+        <?php
         }
         ?>
-        </div>
 
     </section>
     <?php
@@ -55,6 +69,15 @@ session_start();
         echo null;
     };
     ?>
+
+    <div class="side-user-nav display-none">
+        <img src="../images/svg/close-dark.svg" alt="" onclick="closeNavUser()" style="cursor:pointer;">
+        <p><a href="../pages/edit-profile.php">Profile</a></p>
+        <p><a href="../pages/subscription.php">Subscribe</a></p>
+        <p><a href="../pages/upload-slip.php">Upload Payment</a></p>
+        <p><a href="">Become an Employer</a></p>
+        <p><a href="../config/logout.php" class="text-danger">Logout</a></p>
+    </div>
 
 
     <div class="form-jobs " style="padding: 0px 60px;">
@@ -86,7 +109,7 @@ session_start();
     <!-- jobs -->
     <section class="free-jobs">
 
-        <h2>Available Jobs</h2>
+        <h1>Available Jobs</h1>
 
         <div class="job-container">
 

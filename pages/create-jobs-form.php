@@ -11,6 +11,11 @@
     }
 
     if(isset($_SESSION['employer_status']) == 1){
+        $admin = 0;
+        if(isset($_GET['admin'])){
+            $admin = true;
+        }
+
         
 
 ?>
@@ -24,11 +29,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body class="create-job-form">
 
-    <form action="../components/create-jobs-script.php" method="POST">
+    <form action="../components/create-jobs-script.php?admin=<?php $admin ?>" method="POST">
         <div class="pagination">
             <div class="pagination-items">
                 <div class="item" onclick="stepOne()">
@@ -177,11 +184,14 @@
             echo '        
             <div class="sucess-form">
             <h2>Applicaion created successfully !</h2>
+            <div class="btn-box">
+                <button class="btn btn-primary"><a class="text-white text-decoration-none" href="../pages/create-jobs-form.php">New Job</a></button>
+            </div>
             </div>';
         }
         ?>
 
-        <div class="job-box job-height-full display-none" id="review-job-form">
+        <div class=" job-box job-height-full display-none" id="review-job-form">
 
             <p class="company-name">company</p>
             <div class="view-more">
@@ -214,6 +224,10 @@
 
 
     </form>
+
+
+
+    <script src="../js/app.js"></script>
 </body>
 
 </html>
