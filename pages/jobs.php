@@ -1,16 +1,17 @@
 <?php
-
-require "../connect/connect.php";
 session_start();
 
-// Get the current page URL
-$page_url = $_SERVER['REQUEST_URI'];
+require "../config/connect/connect.php";
 
-// Update the page visit count in the database
-$sql = "INSERT INTO page_visits (page_url, visit_count) 
-        VALUES ('$page_url', 1) 
-        ON DUPLICATE KEY UPDATE visit_count = visit_count + 1";
-$con->query($sql);
+// Get the current page URL
+// $page_url = $_SERVER['REQUEST_URI'];
+
+// // Update the page visit count in the database
+// $sql = "INSERT INTO page_visits (page_url, visit_count) 
+//         VALUES ('$page_url', 1) 
+//         ON DUPLICATE KEY UPDATE visit_count = visit_count + 1";
+// $con->query($sql);
+
 
 ?>
 
@@ -22,7 +23,7 @@ $con->query($sql);
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='../css/style.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../resources/css/style.css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -36,51 +37,65 @@ $con->query($sql);
 
     <!-- search jobs header -->
 
+    <?php
+
+    if (isset($_SESSION['email']) && isset($_SESSION['password']) ) {
+        if($_SESSION['subscribe_status'] == 1 || $_SESSION['employer_status'] == 1){
+            $verified = true;      
+        }
+    ?>
+
+
+    <?php
+    }
+    ?>
+
+
+
 
     <?php
 
     if (isset($_SESSION['email']) && isset($_SESSION['password']) ) {
-    ?>
-    <section class="welcome-user">
-        <div class="close-profile-user" onclick="closeProfileHead()">
-            <img src="../images/svg/close.svg" alt="">
-        </div>
-        <div style="display: flex; align-items:center;">
-            <h1>Welcome <?php echo $_SESSION['full_name'] ?></h1>
-            <img src="../images/svg/ham-burger.svg" alt="" style="cursor:pointer;margin-left: 15px; width:25px;"
-                onclick="showNavUser()">
-        </div>
-        <p><?php echo $_SESSION['email'] ?></p>
-
-
-        <?php
-        if($_SESSION['subscribe_status'] == 0){
-            ?>
-        <li class="btn btn-primary " style="list-style-type:none ;"><a class="text-white text-decoration-none"
-                href="../pages/subscription.php">Subscribe</a>
-        </li>
-        <?php
+        if($_SESSION['subscribe_status'] == 1 || $_SESSION['employer_status'] == 1){
+            $verified = true;      
         }
-        ?>
+    ?>
+    <nav class="navbar nav-search" style="box-shadow: none;margin-top:30px;">
+        <div class="container-fluid">
+            <div style="display: flex; align-items:center;">
+                <?php
+                    if(isset($verified) == true){
 
-    </section>
+                ?>
+                <img src="../resources/images/svg/verified.svg" alt="" style="width: 30px;margin-right:10px;">
+                <?php
+                }
+                ?>
+                <h1>Hello <span style="color: #2f89fc;"> <?php echo $_SESSION['full_name'] ?></span> </h1>
+                <?php
+                if($_SESSION['subscribe_status'] == 0){
+                ?>
+                <li class="btn btn-primary " style="list-style-type:none; margin-left:20px;"><a
+                        class="text-white text-decoration-none" href="../pages/subscription.php">Subscribe</a>
+                </li>
+                <?php
+                }
+                ?>
+
+            </div>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2 search-input" type="search" placeholder="Live Search Job "
+                    onkeyup="searchs()" aria-label="Search">
+            </form>
+        </div>
+    </nav>
+
     <?php
-    }else{
-        echo null;
-    };
+    }
     ?>
 
-    <div class="side-user-nav display-none">
-        <img src="../images/svg/close-dark.svg" alt="" onclick="closeNavUser()" style="cursor:pointer;">
-        <p><a href="../pages/edit-profile.php">Profile</a></p>
-        <p><a href="../pages/subscription.php">Subscribe</a></p>
-        <p><a href="../pages/upload-slip.php">Upload Payment</a></p>
-        <p><a href="">Become an Employer</a></p>
-        <p><a href="../config/logout.php" class="text-danger">Logout</a></p>
-    </div>
 
-
-    <div class="form-jobs " style="padding: 0px 60px;">
+    <div class="form-jobs available">
         <?php
      require "../components/search-job-form.php";
     ?>
@@ -93,10 +108,14 @@ $con->query($sql);
     if (isset($_SESSION['email']) && isset($_SESSION['password']) ) {
         if($_SESSION['employer_status']=== 1){
     ?>
-    <section class="free-jobs">
-        <?php
-            require "../components/create-jobs.php";
-        ?>
+    <section class="free-jobs available">
+        <div class="job-box" style="width: max-content;">
+            <div class="job-flex">
+                <h1 style="margin:10px 5px;">Create New Job</h1>
+                <button class="btn btn-primary" style="border: none; margin:10px 5px;"><a
+                        href="../pages/create-jobs-form.php?admin=0" class="text-white text-decoration-none">Create
+                        Job</a></button>
+            </div>
     </section>
     <?php
         }
@@ -104,19 +123,23 @@ $con->query($sql);
         echo null;
     };
     ?>
-
-
     <!-- jobs -->
-    <section class="free-jobs">
 
-        <h1>Available Jobs</h1>
+    <section class="free-jobs" id="available-jobs">
+        <h1 class="available">Available Jobs</h1>
 
-        <div class="job-container">
-
-
+        <div class="job-container all-product">
             <?php
             require "../components/all-jobs.php";
             ?>
+
+
+            <!-- refreshes page to show more jobs by random from database -->
+
+            <form class="refresh-btn-box" method="get" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
+                <button type="submit" name="submit">Refresh</button>
+            </form>
+
         </div>
     </section>
 
@@ -125,9 +148,8 @@ $con->query($sql);
     require "../components/footer.php";
     ?>
 
-
-
-    <script src="../js/app.js"></script>
+    <script src="../resources/js/app.js"></script>
+    <script src="../resources/js/search-job-user.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>

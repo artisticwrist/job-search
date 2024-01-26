@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 session_start();
 
 // Include the database connection
-include '../connect/connect.php';
+include '../config/connect/connect.php';
 
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -15,15 +15,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fullname = $_POST['full_name'];
     $password = $_POST['password'];
     $email = $_POST['email'];
-
-    // // Check if the password is empty
+    $account_name = $_POST['account_name'];
+    $account_type = $_POST['account_type'];
+    $account_number = $_POST['account_number'];
+    $bank_name = $_POST['bank_name'];
+    // Check if the password is empty
     if (empty($password)) {
         // Password field is empty, do not update the password
-        $sql = "UPDATE users SET full_name='$fullname' WHERE email='$email'";
+        $sql = "UPDATE users SET full_name='$fullname', account_name='$account_name', account_type='$account_type', bank_name='$bank_name', account_number='$account_number' WHERE email='$email'";
     } else {
         // Password field is not empty, update the password
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "UPDATE users SET full_name='$fullname', password='$passwordHash' WHERE email='$email'";
+        $sql = "UPDATE users SET full_name='$fullname', password='$passwordHash', account_name='$account_name', account_type='$account_type', bank_name='$bank_name', account_number='$account_number' WHERE email='$email'";
     }
 
     // Execute the SQL query

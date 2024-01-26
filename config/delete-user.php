@@ -2,7 +2,7 @@
 
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    include "../connect/connect.php";
+    include "../config/connect/connect.php";
     
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userid = $_POST['id'];
@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $delete_result = mysqli_query($con, $delete_sql);
 
     if ($delete_result) {
-        echo "Row deleted successfully.";
+        header("Location: ../pages/delete.php?delete=User deleted successfully");
     } else {
         echo "Error deleting row: " . mysqli_error($con);
     }

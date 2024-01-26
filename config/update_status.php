@@ -2,7 +2,7 @@
 
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    include "../connect/connect.php";
+    include "./connect/connect.php";
 
     
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $update_result = mysqli_query($con, $update_sql);
 
     if ($update_result) {
-        echo "Status updated successfully.";
+        header("Location: ../pages/success.php?success=Status updated successfully");
     } else {
         echo "Error updating status: " . mysqli_error($con);
     }

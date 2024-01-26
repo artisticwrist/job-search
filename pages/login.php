@@ -1,16 +1,17 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+session_start();
 
-require "../connect/connect.php";
+require "../config/connect/connect.php";
 // Get the current page URL
-$page_url = $_SERVER['REQUEST_URI'];
+// $page_url = $_SERVER['REQUEST_URI'];
 
-// Update the page visit count in the database
-$sql = "INSERT INTO page_visits (page_url, visit_count) 
-        VALUES ('$page_url', 1) 
-        ON DUPLICATE KEY UPDATE visit_count = visit_count + 1";
-$con->query($sql);
+// // Update the page visit count in the database
+// $sql = "INSERT INTO page_visits (page_url, visit_count) 
+//         VALUES ('$page_url', 1) 
+//         ON DUPLICATE KEY UPDATE visit_count = visit_count + 1";
+// $con->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +20,7 @@ $con->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login page</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../resources/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -28,11 +29,12 @@ $con->query($sql);
     <?php
     require "../components/nav.php";
     ?>
-    <section class="find-job-section">
-        <h1 class="logo">Job search</h1>
-        <p style="color: #40514e70; margin:5px;">Log in your account</p>
-        <p style="color: #2F89FC; font-size:13px;margin:3px;">
-            <?php
+    <div class="section-form" id="section-form">
+        <section class="find-job-section">
+            <h1 class="logo">Calmbird</h1>
+            <p style="color: #40514e70; margin:5px;">Log in your account</p>
+            <p style="color: #2F89FC; font-size:13px;margin:3px;">
+                <?php
                 if(isset($_GET['signup-msg'])){
                     echo  $_GET['signup-msg'];
                 }elseif(isset($_GET['error'])){
@@ -41,24 +43,27 @@ $con->query($sql);
 
                 
             ?>
-        </p>
-        <!--log in user  -->
-        <form action="../config/login-script.php" method="POST" class="fill-form">
-            <input type="email" placeholder="email" name="email" class="text-input">
-            <input type="password" placeholder="password" name="password" class="text-input">
-            <button type="submit" name="submit">Log in</button>
-            <div class="form-box">
-                <div class="check-box">
-                    <input type="checkbox" name="" id="">
-                    <p>remember me</p>
+            </p>
+            <!--log in user  -->
+            <form action="../config/login-script.php" method="POST" class="fill-form">
+                <input type="email" placeholder="email" name="email" class="text-input">
+                <input type="password" placeholder="password" name="password" class="text-input">
+                <button type="submit" name="submit">Log in</button>
+                <div class="form-box">
+                    <div class="check-box">
+                        <input type="checkbox" name="" id="">
+                        <p>remember me</p>
+                    </div>
+                    <p><a href="">forgot password ?</a></p>
                 </div>
-                <p><a href="">forgot password ?</a></p>
-            </div>
-        </form>
-        <p style="font-size: 14px;">Don't have an account yet ? <a href="../pages/signup.php"
-                class="text-primary text-decoration-none">Sign up</a></p>
-        <p style="font-size: 14px;"><a href="../admin/login_admin.php" style="color:#2f89fc ;">Admin</a></p>
-    </section>
+            </form>
+            <p style="font-size: 14px;">Don't have an account yet ? <a href="../pages/signup.php"
+                    class="text-primary text-decoration-none">Sign up</a></p>
+            <p style="font-size: 14px;"><a href="../admin/login_admin.php" style="color:#2f89fc ;">Admin</a></p>
+        </section>
+        <img src="../resources/images/mockup-iphone-2.svg" alt="" class="bg-mockup">
+    </div>
+
     <?php
     require "../components/footer.php";
     ?>

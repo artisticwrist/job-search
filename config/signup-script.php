@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require "../connect/connect.php";
+require "../config/connect/connect.php";
 
 if (isset($_POST['submit'])) {
 
@@ -23,6 +23,9 @@ if (isset($_POST['submit'])) {
             //INITIAL STATE OF REFERRED USER
             $approved = 0;
 
+            //INITAL VALUE OF ACCOUNT DETAILS SET TO NULL
+            $account_name = $account_number = $account_type = $bank_name = 0;
+
             if (empty($full_name)) {
                 header("Location: ../pages/signup.php?notMatch=please input full name");
             } elseif (empty($email)) {
@@ -43,18 +46,37 @@ if (isset($_POST['submit'])) {
                 // Get referring email using the generated referral code
                 $getReferringEmail = "SELECT email FROM `users` WHERE referral_code = '$initialReferral'";
                 $resultReferringEmail = mysqli_query($con, $getReferringEmail);
-                $rowReferringEmail = mysqli_fetch_assoc($resultReferringEmail);
-                $referringEmail = $rowReferringEmail['email'];
 
-                // Insert into 'referrals' table
-                $insertReferral = "INSERT INTO referrals(referring_email, new_user_email, approved) VALUES ('$referringEmail', '$email', '$approved')";
-                mysqli_query($con, $insertReferral);
+                if ($resultReferringEmail && mysqli_num_rows($resultReferringEmail) > 0) {
+                    $rowReferringEmail = mysqli_fetch_assoc($resultReferringEmail);
+                    $referringEmail = $rowReferringEmail['email'];
+                } else {
+                    $referringEmail = null;
+                }
+                
 
                 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                $sql = "INSERT INTO users(full_name, email, employer_status, subscribe_status, referral_code, password) 
-                        VALUES ('$full_name', '$email', '$employer_status', '$subscribe_status', '$referral_code', '$passwordHash')";
+
+                if($referringEmail == null || $referringEmail == ""){
+                    $sql = "INSERT INTO users(full_name, email, employer_status, subscribe_status, referral_code, password, account_name, account_type, bank_name, account_number) 
+                            VALUES ('$full_name', '$email', '$employer_status', '$subscribe_status', '$referral_code', '$passwordHash','$account_name', '$account_type', '$bank_name', '$account_number')";
+                }else{
+
+                    $sql = "INSERT INTO users(full_name, email, employer_status, subscribe_status, referral_code, password, account_name, account_type, bank_name, account_number) 
+                            VALUES ('$full_name', '$email', '$employer_status', '$subscribe_status', '$referral_code', '$passwordHash','$account_name', '$account_type', '$bank_name', '$account_number')";
+                    // Insert into 'referrals' table
+                    $insertReferral = "INSERT INTO referrals(referring_email, new_user_email, approved) VALUES ('$referringEmail', '$email', '$approved')";
+                    mysqli_query($con, $insertReferral);
+
+                }
+
+
+                
+
                 if ($con->query($sql)) {
-                    header("Location: ../pages/login.php?signup-msg=sign up successful !!. please login");
+                 
+                 header("Location: ../pages/login.php?signup-msg=sign up successful !!. please login");
+                 
                 } else {
                     die(mysqli_error($con));
                 }

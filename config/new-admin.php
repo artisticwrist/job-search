@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require "../connect/connect.php";
+require "../config/connect/connect.php";
 
 if(isset($_POST['submit'])){
 
@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
                 
                 $username = $_POST['username'];
                 $email = $_POST['email'];
-                
+                $role = $_POST['role'];
                 if(empty($username)){
                         header("Location: ../admin/create-admin.php.php?notMatch= please input full name");   
                  }elseif(empty($email)){
@@ -34,11 +34,17 @@ if(isset($_POST['submit'])){
                         }else{
                                 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
                                 $employer_status = 1;
-                                $subscribe_status = 1;     
-                                $super_admin = 0;
+                                $subscribe_status = 1;    
+                                
+                                if($role == "super-admin"){
+                                        $super_admin = 1;    
+                                }elseif($role == "others"){
+                                        $super_admin = 0;
+                                }
+                                
                                 $sql = "INSERT INTO admin_log(username,email,password,employer_status,subscribe_status,super_admin) VALUES('$username', '$email','$passwordHash','$employer_status','$subscribe_status', '$super_admin')";
                                 if($con->query($sql)){
-                                   header("Location: ../admin/super-admin.php?admincreate=1");
+                                   header("Location: ../calmbird-admin/super-admin.php?admincreate=1");
                                 }else{
                                 die(mysqli_error($con));
                                 }

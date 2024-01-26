@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require "../connect/connect.php";
+require "../config/connect/connect.php";
 
 ?>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ require "../connect/connect.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../resources/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -72,17 +72,29 @@ if ($result) {
                 }else{
                 echo null;
                 }
-                echo '</p>
+                echo ' | '.$category.'</p>
                 <div class="view-more">
                     <h1 class="job-name">'.$job_name.'</h1>
                     <img src="../images/img.jpg" alt="" class="company-logo">
                 </div>
             <div class="view-more">
-                <p class="salary">'.$salary.'</p>
-                <p>'.$location.'</p>
+                <p class="salary">'.$salary.' | '.$specification.'</p>
+                <p>'.$location.' | '.$date_uploaded.'</p>
             </div>
             <p class="summary">
                 '.$summary.'
+            </p>
+            <h1 class="job-name">Years of EXperience</h1>
+            <p class="summary">
+                '.$yearsExp.'
+            </p>
+            <h1 class="job-name">Experience Level</h1>
+            <p class="summary">
+                '.$exp_level.'
+            </p>
+            <h1 class="job-name">Qualification</h1>
+            <p class="summary">
+                '.$qualification.'
             </p>
             <h1 class="job-name">Requirement</h1>
             <p class="summary">
@@ -91,7 +103,7 @@ if ($result) {
             <h1 class="job-name">Responsibilities</h1>
             <p class="summary">
                 '.$responsibility.'
-            </p>
+            </p> 
             <div class="view-more">
               <div><h1 class="job-name">How to apply</h1>';
             if($job_type === 'free'){
@@ -116,7 +128,7 @@ if ($result) {
             }else{
                 echo null;
             }
-                echo '</div><p>'.$job_type.'</p>
+                echo '</div><p class="summary">'.$job_type.'</p>
             </div>
 
             <button class="btn btn-primary" style="width:150px;"><a class="text-white text-decoration-none" href="../pages/jobs.php">Back to Jobs</a></button>

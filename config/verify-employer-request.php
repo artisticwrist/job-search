@@ -2,7 +2,7 @@
 
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    include "../connect/connect.php";
+    include "../config/connect/connect.php";
 
     
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $delete_result = mysqli_query($con, $delete_sql);
 
     if ($update_result && $delete_result) {
-        echo "Employer successfully verified !!.";
+        header("Location: ../pages/success.php");
     } else {
         echo "Error updating status: " . mysqli_error($con);
     }

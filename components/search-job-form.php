@@ -1,30 +1,14 @@
     <?php
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    require "../connect/connect.php";
-    
-    if(isset($_POST['submit'])){
-
-        $search_name = $_POST['jobs'];
-        $search_industry = $_POST['industries'];
-        $search_exp = $_POST['experience'];
-        $search_location = $_POST['locations'];
-
-        $sql = "SELECT * FROM `jobs` ORDER BY RAND()";
-    
-        $result = mysqli_query($con, $sql);
-
-        
-    }
-
-
+    require "../config/connect/connect.php";
 
     
     ?>
-    <form action="../pages/jobs.php" method="POST" class="search-job-header sticky-job-search">
+    <form action="../components/search-job-result.php" method="POST" class="search-job-header">
 
-        <select name="jobs" id="">
-            <option value="all-jobs">All job function</option>
+        <!-- <select name="job_title" id="">
+            <option value="all-jobs">Job Titles</option>
             <option value="accounting">Accounting, Auditing and Finance</option>
             <option value="admin">Admin & Office</option>
             <option value="building">Building & Architecture</option>
@@ -50,50 +34,65 @@
             <option value="sales">Sales</option>
             <option value="software">Software & Data</option>
             <option value="trading-services">Trades & Services</option>
-        </select>
+        </select> -->
 
-        <select name="industries" id="">
-            <option value="all-industris">All industries</option>
-            <option value="advertising">Advertising, Media & Communications</option>
-            <option value="agriculture">Agriculture, Fishing & Forestry</option>
-            <option value="automotive">Automotive & Aviation</option>
-            <option value="banking">Banking, Finance & Insurance</option>
-            <option value="construction">Construction</option>
+        <input type="text" placeholder="Job Title" name="job_title">
+
+        <select name="categories" id="">
+            <option value="arts">Arts</option>
+            <option value="business">Business</option>
+            <option value="communications">Communications</option>
             <option value="education">Education</option>
-            <option value="energy">Energy & Utilities</option>
-            <option value="security">Enforcement & Securiity</option>
-            <option value="entertainment">Entertainment, Events & Sport</option>
-            <option value="government">Government</option>
-            <option value="health-care">Healthcare</option>
-            <option value="otel">Hospitality & Hotel</option>
-            <option value="it-telecoms">IT & Telecoms</option>
-            <option value="law">Law & Compliance</option>
-            <option value="warehousing">Manufacturing & Warehousing</option>
-            <option value="mining">Mining, Energy & Metals</option>
-            <option value="charity">NGO, NPO & Charity</option>
-            <option value="real-estate">Real Estate</option>
-            <option value="recruitment">Recruitment</option>
-            <option value="fashion">Retail, Fashion & FMCG</option>
-            <option value="logistics">Shipping & Logistics</option>
-            <option value="tourism">Tourism & Travel</option>
+            <option value="healthcare">Healthcare</option>
+            <option value="hospitality">Hospitality</option>
+            <option value="information-technology">Information Technology</option>
+            <option value="law">Law Enforcement</option>
+            <option value="sales-marketing">Sales & Marketing</option>
+            <option value="science">Science</option>
+            <option value="transportation">Transportation</option>
         </select>
 
         <select name="locations" id="">
-            <option value="all-locations">All location</option>
-            <option value="abeokuta-ogun">Abeokuta & Ogun State</option>
+            <option value="abia">Abia</option>
             <option value="abuja">Abuja</option>
-            <option value="enugu">Enugu</option>
-            <option value="ibandan-oyo">Ibandan & Oyo State</option>
+            <option value="adamawa">Adamawa</option>
+            <option value="akwa-ibom">Akwa Ibom</option>
+            <option value="anambra">Anambra</option>
+            <option value="bauchi">Bauchi</option>
+            <option value="bayelsa">Bayelsa</option>
+            <option value="benue">Benue</option>
+            <option value="borno">Borno</option>
+            <option value="cross-river">Cross River</option>
+            <option value="delta">Delta</option>
+            <option value="ebonyi">Ebonyi</option>
+            <option value="edo">Edo</option>
+            <option value="ekiti">Ekiti</option>
+            <option value="gombe">Gombe</option>
             <option value="imo">Imo</option>
+            <option value="jigawa">Jigawa</option>
+            <option value="kaduna">Kaduna</option>
+            <option value="kano">Kano</option>
+            <option value="katsina">Katsina</option>
+            <option value="kebbi">Kebbi</option>
+            <option value="kogi">Kogi</option>
+            <option value="kwara">Kwara</option>
             <option value="lagos">Lagos</option>
-            <option value="porthacourt">Porthacourt & Rivers State</option>
-            <option value="rest-of-nigeria">Rest of Nigeria</option>
+            <option value="nasarawa">Nasarawa</option>
+            <option value="niger">Niger</option>
+            <option value="ogun">Ogun</option>
+            <option value="ondo">Ondo</option>
+            <option value="osun">Osun</option>
+            <option value="oyo">Oyo</option>
+            <option value="plateau">Plateau</option>
+            <option value="rivers">Rivers</option>
+            <option value="sokoto">Sokoto</option>
+            <option value="taraba">Taraba</option>
+            <option value="yobe">Yobe</option>
+            <option value="zamfara">Zamfara</option>
             <option value="outside-nigeria">Outside Nigeria</option>
-            <option value="remote-work">Remote (Work FRom Home)</option>
         </select>
 
         <select name="experience" id="">
-            <option value="all-exp">All experience level</option>
             <option value="no-exp">No experience</option>
             <option value="internship-graduate">Internship & Graduate</option>
             <option value="entry-level">Entry level</option>

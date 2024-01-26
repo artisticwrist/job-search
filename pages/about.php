@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -6,7 +9,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='../css/style.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../resources/css/style.css'>
     <link rel="stylesheet" href="../css/scroll.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -27,36 +30,37 @@ nav {
 
     <!-- ABOUT US -->
     <section class="about-us">
-        <h1 class="header-text hidden-slide">About Job Search</h1>
+        <h1 class="header-text hidden-slide">About Calmbird</h1>
         <div class="about">
             <div class="about-flex">
-                <h1 class="hidden">Our mission is to create more economic freedom in the world</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.
+                <h1>Our mission and Vision</h1>
+                <p>At Calmbird Services, our mission is to empower the youth through innovative solutions in job
+                    advertisement, placement, and cultivating essential 21st-century skills. We strive to go beyond
+                    conventional approaches, providing a holistic platform for career development. Our vision is a
+                    future where every individual, armed with the right skills and opportunities, can shape their
+                    destiny.
                 </p>
             </div>
             <div class="about-img">
-                <img src="../images/pc-mockup.png" class="img-bg hidden-slide" alt="">
+                <img src="../resources/images/pc-mockup.png" class="img-bg hidden-slide" alt="">
             </div>
         </div>
         <div class="about-box">
-            <h1 class="hidden-slide">What we’re doing about it</h1>
-            <p>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum.
+            <h1 class="hidden-slide head-text">Our Community </h1>
+            <p class="sub-head-text">
+                Presently boasting over five thousand members, our community is not just a network; it's a support
+                system where empowerment and growth converge. We aim to expand this community to one million by the end
+                of 2025.
             </p>
         </div>
         <div class="about">
             <div class="about-img">
-                <img src="../images/tab-mockup.png" alt="" class="hidden-slide">
+                <img src="../resources/images/tab-mockup.png" alt="" class="hidden-slide">
             </div>
             <div class="about-flex">
-                <h1 class="hidden">News</h1>
-                <p>Stay informed with timely and objective news content relevant to the crypto
-                    industry, published daily
-                    by Job Search</p>
+                <h1 class="hidden">Identifying A Gap</h1>
+                <p>Recognizing the skills gap among job-seeking youths, even those with higher education, fueled our
+                    determination to provide a solution.</p>
             </div>
         </div>
 

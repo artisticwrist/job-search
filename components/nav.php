@@ -1,6 +1,5 @@
 <?php
-    require "../connect/connect.php";
-    session_start();
+    require "../config/connect/connect.php";
 
     $active = null;
     $subcriber = null;
@@ -31,7 +30,7 @@
 ?>
 <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand logo" href="../pages/index.php">Job Search</a>
+        <a class="navbar-brand logo" href="../pages/index.php">Calmbird</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,7 +46,6 @@
                         <li><a class="dropdown-item" href="#">CV Review servcies</a></li>
                         <li><a class="dropdown-item" href="#">Job vacanies</a></li>
                         <li><a class="dropdown-item" href="#">Soft skill training</a></li>
-                        <li><a class="dropdown-item" href="#">Job search advice</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -98,6 +96,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../pages/login.php">Log In</a>
                 </li>
+
                 <button class="nav-item btn-primary btn">
                     <a href="../pages/signup.php" class="text-light text-decoration-none">Become an Employer</a>
                 </button>
@@ -117,7 +116,12 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../pages/edit-profile.php">Profile</a></li>
+                        <li><a class="dropdown-item" href="../pages/subscription.php">Subscribe</a></li>
                         <li><a class="dropdown-item" href="../pages/upload-slip.php">Upload Payment</a></li>
+                        <li><a class="dropdown-item" href="../pages/employer-subscription.php">Become an Employer</a>
+                        </li>
+                        <li><a class="dropdown-item" href="../components/view-refferred-users.php">Referred Users</li>
+                        </p>
                         <li><a class="dropdown-item" href="../config/logout.php">Logout</a></li>
                     </ul>
                 </li>

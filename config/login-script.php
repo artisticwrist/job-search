@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
-include "../connect/connect.php";
+include "../config/connect/connect.php";
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
 
@@ -40,6 +40,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 $_SESSION['password'] = $row['password'];
                 $_SESSION['employer_status'] = $row['employer_status'];
                 $_SESSION['subscribe_status'] = $row['subscribe_status'];
+                $_SESSION['referral_code'] = $row['referral_code'];
+                $_SESSION['account_name'] = $row['account_name'];
+                $_SESSION['account_type'] = $row['account_type'];
+                $_SESSION['account_number'] = $row['account_number'];
+                $_SESSION['bank_name'] = $row['bank_name'];
                 header("Location: ../pages/jobs.php");
                 exit();
             } else {
