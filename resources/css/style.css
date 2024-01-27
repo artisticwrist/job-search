@@ -12,7 +12,7 @@
   top: -17%;
   width: 20px !important;
   cursor: pointer;
-}
+} 
 .header-msg-anim {
   opacity: 0;
   transform: translateY(20px);
@@ -1350,6 +1350,7 @@ section.overview-job-box {
 
 .layout-form form input {
   height: 40px;
+  width: 100%;
 }
 
 .layout-form form button {
