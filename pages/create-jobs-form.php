@@ -11,24 +11,60 @@
     }
 
     if(isset($_SESSION['employer_status']) == 1){
+        if(isset($_POST['submit'])){
+            if(empty($_POST['title']) || empty($_POST['company']) || empty($_POST['job_type']) || empty($_POST['location']) || empty($_POST['category']) || empty($_POST['summary']) || empty($_POST['salary']) || empty($_POST['specification']) || empty($_POST['requirements']) || empty($_POST['responsibility']) || empty($_POST['qualification']) || empty($_POST['exp_level']) || empty($_POST['years_of_exp']) || empty($_POST['how_to_apply'])){
+                header("Location: ../pages/create-jobs-form.php?errform=1");
+            }else{
+                $title = $_POST['title'];
+                $company = $_POST['company'];
+                $job_type = $_POST['job_type'];
+                $category = $_POST['category'];
+                $summary = $_POST['summary'];
+                $salary = $_POST['salary'];
+                $specification = $_POST['specification'];
+                $requirements = $_POST['requirements'];
+                $responsibility = $_POST['responsibility'];
+                $qualification = $_POST['qualification'];
+                $exp_level = $_POST['exp_level'];
+                $years_exp = $_POST['years_of_exp'];
+
+                $how_to_apply = $_POST['how_to_apply'];
+                $outsideNigeria = $_POST['outside-nigeria'];
+                $status = 0;
         
+                // Handling logo upload
+				$targetDirectory = 'C:\xampp\htdocs\job-search\resources\images\uploads\upload';
+				$company_logo_name = basename($_FILES['logo']['name']);
+				$company_logo_path = $targetDirectory . $company_logo_name;
 
-            if(isset($_GET['admin'])){
-
-                $admin = $_GET['admin'];
+				move_uploaded_file($_FILES['logo']['tmp_name'], $company_logo_path);
+        
+        
                 
-                if($admin == 1){
-                    $status = 1;
-                }elseif($admin == 0) {
-                    $status = 0;
-                }
-
-            }
-
-
-
+                    // SETS LOCATION IF USER INPUTS A LOCATION OUTISDE NIGERIA OR PICKS AN OPTION AMONG THE 37 STATES OF NIGERIA
         
-
+                    if(!empty($outsideNigeria)){
+                        $location = $outsideNigeria;
+                        
+                    }else{
+                        $location = $_POST['location'];
+                    }
+        
+        
+                $sql = "INSERT INTO jobs(job_name, company,job_type, job_location, category,summary, salary, specification,requirements,
+                responsibility,qualification,exp_level,years_of_exp,company_logo,how_to_apply, status)
+                VALUES('$title','$company','$job_type','$location','$category','$summary','$salary','$specification','$requirements','$responsibility','$qualification','$exp_level
+                ','$years_exp ','$company_logo_name','$how_to_apply' , '$status')";
+        
+                $query = mysqli_query($con, $sql);
+        
+                if($query){
+                    header("Location: ../pages/create-jobs-form.php?successmsg=1");
+                }else{
+                    echo "my sqli error";
+                }
+            }
+        }
 ?>
 
 
@@ -49,7 +85,7 @@
     <h1>CREATE JOB</h1>
     <p style="color: silver;">KIndly fill in all fields details</p>
 
-    <form action="../config/create-jobs-script.php?status=<?php echo $status ?>" method="POST">
+    <form action="../pages/create-jobs-form.php" method="POST">
         <div class="pagination">
             <div class="pagination-items">
                 <div class="item" onclick="stepOne()">
@@ -221,11 +257,24 @@
                         </div>
                         <div class="input-box">
                             <p>Cert Qualification</p>
-                            <input type="text" placeholder="HND, Bsc, Diploma" class="input-qualification" name="qualification">
+                            <select class="input-qualification" name="qualification" id="">
+                            <option value="no-exp">No experience</option>
+                            <option value="internship-graduate">Internship & Graduate</option>
+                            <option value="entry-level">Entry level</option>
+                            <option value="mid-level">Mid level</option>
+                            <option value="senior-level">Senior level </option>
+                            <option value="executive-level">EXecutive level</option>
+                        </select>
                         </div>
                         <div class="input-box">
                             <p>Years of experience</p>
-                            <input type="text" placeholder="5-7 years" class="input-years-exp" name="years_of_exp">
+                            <select class="input-years-exp" name="years_of_exp">
+                                <option selected>Choose...</option>
+                                <option value="0-1yr">0-1yr</option>
+                                <option value="1-3years">1-3years</option>
+                                <option value="3-5years">3-5years</option>
+                                <option value="5years above">5years above</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -261,14 +310,11 @@
             <div class="sucess-form">
             <h2>Applicaion created successfully !</h2>
             <div class="btn-box">
-                <button class="btn btn-primary"><a class="text-white text-decoration-none" href="../pages/create-jobs-form.php?admin='.$status.'">New Job</a></button>
+                <button class="btn btn-primary"><a class="text-white text-decoration-none" href="../pages/create-jobs-form.php">New Job</a></button>
             </div>
-            </div>';
-            if($status== 0 ){
-                echo ' <button class="btn btn-primary"><a class="text-white text-decoration-none" href="../pages/jobs.php">Home</a></button>';
-            }elseif($status== 1){
-                 echo ' <button class="btn btn-primary"><a class="text-white text-decoration-none" href="../admin/super-admin.php">Home</a></button>';
-            };
+            </div>
+            <button class="btn btn-primary"><a class="text-white text-decoration-none" href="../pages/jobs.php">Home</a></button>';
+            
         }
         ?>
 
@@ -317,7 +363,7 @@
 
 
 
-    <script src="../js/app.js"></script>
+    <script src="../resources/js/app.js"></script>
 </body>
 
 </html>

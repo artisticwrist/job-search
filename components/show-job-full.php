@@ -75,7 +75,7 @@ if ($result) {
                 echo ' | '.$category.'</p>
                 <div class="view-more">
                     <h1 class="job-name">'.$job_name.'</h1>
-                    <img src="../images/img.jpg" alt="" class="company-logo">
+                    <img src="../resources/images/upload" alt="" class="company-logo">
                 </div>
             <div class="view-more">
                 <p class="salary">'.$salary.' | '.$specification.'</p>

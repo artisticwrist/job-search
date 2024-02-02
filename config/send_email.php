@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $feedback = $_POST["feedback"];
 
     // Set the recipient email address
-    $to = "contactdev.bigjoe@gmail.com";
+    $to = "lionelunomieta@gmail.com";
 
     // Set the subject of the email
     $subject = "New Contact Form Submission";
@@ -17,7 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message .= "Message:\n$feedback";
 
     // Set additional headers
-    $headers = "From: $email";
+    $headers = "From: $email\r\n";
+    $headers .= "Reply-To: $email\r\n";
+    // $headers .= "X-Mailer: PHP/" . phpversion();
 
     // Send the email
     if (mail($to, $subject, $message, $headers)) {
@@ -25,5 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Error sending email.";
     }
+} else {
+    // If the request method is not POST, handle the error accordingly
+    echo "Invalid request method.";
 }
 ?>

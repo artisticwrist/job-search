@@ -42,20 +42,20 @@ require "../config/connect/connect.php";
             </p>
 
             <form action="../config/signup-script.php" method="POST" class="fill-form">
-                <input type="text" placeholder="full name" name="full-name" class="text-input">
-                <input type="email" placeholder="email" name="email" class="text-input">
+                <input type="text" placeholder="Full Name" name="full-name" class="text-input">
+                <input type="email" placeholder="Email" name="email" class="text-input">
                 <select name="employer-status" id="" class="signup-option">
                     <option value="0">User</option>
                     <option value="0">Employer</option>
                 </select>
 
-                <input type="text" placeholder="referral code (optional)" name="referral" class="text-input">
-                <input type="password" placeholder="password (more than 7 values)" name="password" class="text-input">
-                <input type="password" placeholder="re enter password" name="password-check" class="text-input">
-                <button name="submit" type="submit">sign up</button>
+                <input type="text" placeholder="Referral Code (optional)" name="referral" class="text-input">
+                <input type="password" placeholder="Password (more than 7 values)" name="password" class="text-input">
+                <input type="password" placeholder="Confirm Password" name="password-check" class="text-input">
+                <button name="submit" type="submit">Sign Up</button>
             </form>
             <p style="font-size: 14px;">Already have an account ? <a href="../pages/login.php"
-                    class="text-primary text-decoration-none">Log in</a></p>
+                    class="text-primary text-decoration-none">Log In</a></p>
         </section>
         <img src="../resources/images/mockup-iphone.svg" alt="" class="bg-mockup">
     </div>

@@ -30,7 +30,7 @@ nav {
 
     <!-- ABOUT US -->
     <section class="about-us">
-        <h1 class="header-text hidden-slide">About Calmbird</h1>
+        <h1 class="header-text hidden-slide" style="text-align: center;">About Calmbird</h1>
         <div class="about">
             <div class="about-flex">
                 <h1>Our mission and Vision</h1>
@@ -52,6 +52,8 @@ nav {
                 system where empowerment and growth converge. We aim to expand this community to one million by the end
                 of 2025.
             </p>
+            <img src="../resources/images/mockup-iphone-3.svg" alt="" class="about-mockup">
+            <!-- <img src="../resources/images/mockup-iphone-3.svg" alt="" class="about-mockup-two"> -->
         </div>
         <div class="about">
             <div class="about-img">

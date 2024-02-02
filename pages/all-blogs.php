@@ -17,38 +17,12 @@
 
 
     <section class="career-body">
-        <h1>Popular Articles</h1>
-
-        <section class="article_body">
-            <div class="row justify-content-center">
-                <?php
-                    include '../components/show-few-blogs.php';
-                ?>
-            </div>
-        </section>
-
-        <!-- Notification -->
-        <section class="notification_box">
-            <div class="notification_flex">
-                <div class="bell">
-                    <img src="../resources/images/svg/bell.svg" alt="">
-                </div>
-                <div class="notification_head">
-                    <h5>Active Notification</h5>
-                    <p>Stay productive - get the latest updates on Jobs & News</p>
-                </div>
-            </div>
-            <div class="notification_flex">
-                <button class="btn"><a class="text-white text-decoration-none" href="../pages/signup.php">Join Us</a></button>
-            </div>
-        </section>
-
-        <h1>Latest Articles</h1>
+        <h1>Blog Articles</h1>
         
         <section class="article_body">
             <div class="row justify-content-center">
                 <?php
-                    include '../components/show-all-blogs.php';
+                include '../components/show-all-blogs.php';
                 ?>
             </div>
         </section>

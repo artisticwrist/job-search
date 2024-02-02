@@ -3,6 +3,13 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require "../config/connect/connect.php";
 
+// Establish MySQLi connection
+
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
 if (isset($_POST['submit'])) {
 
     // Cross-checking user password and re-enter password input

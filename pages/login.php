@@ -46,9 +46,9 @@ require "../config/connect/connect.php";
             </p>
             <!--log in user  -->
             <form action="../config/login-script.php" method="POST" class="fill-form">
-                <input type="email" placeholder="email" name="email" class="text-input">
-                <input type="password" placeholder="password" name="password" class="text-input">
-                <button type="submit" name="submit">Log in</button>
+                <input type="email" placeholder="Email" name="email" class="text-input">
+                <input type="password" placeholder="Password" name="password" class="text-input">
+                <button type="submit" name="submit">Log In</button>
                 <div class="form-box">
                     <div class="check-box">
                         <input type="checkbox" name="" id="">
@@ -59,7 +59,7 @@ require "../config/connect/connect.php";
             </form>
             <p style="font-size: 14px;">Don't have an account yet ? <a href="../pages/signup.php"
                     class="text-primary text-decoration-none">Sign up</a></p>
-            <p style="font-size: 14px;"><a href="../admin/login_admin.php" style="color:#2f89fc ;">Admin</a></p>
+            <p style="font-size: 14px;"><a href="../calmbird-admin/login_admin.php" style="color:#2f89fc ;">Admin</a></p>
         </section>
         <img src="../resources/images/mockup-iphone-2.svg" alt="" class="bg-mockup">
     </div>
