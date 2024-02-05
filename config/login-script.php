@@ -4,6 +4,13 @@ ini_set('display_errors', 1);
 session_start();
 include "../config/connect/connect.php";
 
+// Establish MySQLi connection
+
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
 if (isset($_POST['email']) && isset($_POST['password'])) {
 
     function validate($data){

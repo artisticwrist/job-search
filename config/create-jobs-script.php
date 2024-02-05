@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
 
 
     if(empty($_POST['title']) || empty($_POST['company']) || empty($_POST['job_type']) || empty($_POST['location']) || empty($_POST['category']) || empty($_POST['summary']) || empty($_POST['salary']) || empty($_POST['specification']) || empty($_POST['requirements']) || empty($_POST['responsibility']) || empty($_POST['qualification']) || empty($_POST['exp_level']) || empty($_POST['years_of_exp']) || empty($_POST['how_to_apply'])){
-        header("Location: ../pages/create-jobs-form.php?errform=1&admin=$status");
+        header("Location: ../pages/create-jobs-form.php?errform=1");
     }else{
         $title = $_POST['title'];
         $company = $_POST['company'];

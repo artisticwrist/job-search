@@ -30,39 +30,25 @@
 ?>
 <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand logo" href="../pages/index.php">Calmbird</a>
+        <a class="navbar-brand logo" href="../">
+            <img src="../resources/images/logo.png" alt="">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Careers
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">CV Review servcies</a></li>
-                        <li><a class="dropdown-item" href="#">Job vacanies</a></li>
-                        <li><a class="dropdown-item" href="#">Soft skill training</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Job search advice</a></li>
+                        <li><a class="dropdown-item" href="../pages/all-blogs.php">Career Development</a></li>
+                        <li><a class="dropdown-item" href="../pages/career.php">Latest Blogs</a></li>
                     </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Education
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Courses</a></li>
-                        <li><a class="dropdown-item" href="#">About Courses</a></li>
-                        <li><a class="dropdown-item" href="#">Soft skill training</a></li>
-                    </ul>
-                </li>
+                </li> 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -73,14 +59,10 @@
                         <li><a class="dropdown-item" href="#">Our Goal</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                <li class="nav-item">
+                    <a class="nav-link " href="../pages/contact.php">
                         Contact Us
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../pages/contact.php">Send us a message</a></li>
-                    </ul>
                 </li>
             </ul>
             <?php
@@ -88,18 +70,17 @@
             ?>
 
 
-            <ul class="navbar-nav mb-2 mb-lg-0">
+            <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
+                <li class="nav-item me-lg-2">
+                    <a href="../pages/signup.php" class="nav-link"><b>Post a Job</b></a>
+                </li>
+                    
                 <li class="nav-item">
-                    <a class="nav-link" href="../pages/signup.php">Sign Up</a>
+                    <button class="btn-primary btn">
+                        <a class="text-light text-decoration-none" href="../pages/signup.php">Get Started</a>
+                    </button>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../pages/login.php">Log In</a>
-                </li>
-
-                <button class="nav-item btn-primary btn">
-                    <a href="../pages/signup.php" class="text-light text-decoration-none">Become an Employer</a>
-                </button>
             </ul>
 
 
@@ -122,7 +103,7 @@
                         </li>
                         <li><a class="dropdown-item" href="../components/view-refferred-users.php">Referred Users</li>
                         </p>
-                        <li><a class="dropdown-item" href="../config/logout.php">Logout</a></li>
+                        <li><a class="dropdown-item" href="../logout.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>

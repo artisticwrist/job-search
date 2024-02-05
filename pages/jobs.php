@@ -3,6 +3,13 @@ session_start();
 
 require "../config/connect/connect.php";
 
+// Establish MySQLi connection
+
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
 // Get the current page URL
 // $page_url = $_SERVER['REQUEST_URI'];
 
@@ -62,16 +69,18 @@ require "../config/connect/connect.php";
     ?>
     <nav class="navbar nav-search" style="box-shadow: none;margin-top:30px;">
         <div class="container-fluid">
-            <div style="display: flex; align-items:center;">
+            <div class="username-box">
                 <?php
                     if(isset($verified) == true){
 
                 ?>
+                <div style="display: flex; align-items:center;">
                 <img src="../resources/images/svg/verified.svg" alt="" style="width: 30px;margin-right:10px;">
                 <?php
                 }
                 ?>
                 <h1>Hello <span style="color: #2f89fc;"> <?php echo $_SESSION['full_name'] ?></span> </h1>
+                </div>
                 <?php
                 if($_SESSION['subscribe_status'] == 0){
                 ?>

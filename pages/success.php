@@ -10,7 +10,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password']) ) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../resources/css/style.css">
     <title>Document</title>
 </head>
 
@@ -27,7 +27,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password']) ) {
         ?>
     </p>
     <p>Please go back to admin dashboard</p>
-    <button><a href="../admin/super-admin.php">Dashboard</a></button>
+    <button><a href="../calmbird-admin/super-admin.php">Dashboard</a></button>
 </body>
 
 </html>

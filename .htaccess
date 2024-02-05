@@ -1,14 +1,30 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /job-search/ 
+# Enable Rewrite Engine
+RewriteEngine On
 
-    # Remove file extension from URLs in the 'pages' folder
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^pages/([^\.]+)$ pages/$1.php [NC,L]
+# Remove .php extension from URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^/]+)/?$ $1.php [L]
 
-    # Cache images for one year
-    <FilesMatch "\.(jpg|jpeg|png|gif|ico)$">
-        Header set Cache-Control "max-age=31536000, public"
-    </FilesMatch>
-</IfModule>
+# Redirect www to non-www (optional)
+RewriteCond %{HTTP_HOST} ^www\.example\.com [NC]
+RewriteRule ^(.*)$ http://example.com/$1 [L,R=301]
+
+# Force HTTPS (optional)
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Prevent directory listing
+Options -Indexes
+
+# Prevent access to .htaccess file
+<Files .htaccess>
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Prevent access to specific files
+# <FilesMatch "(config\.php|\.env)">
+#     Order Allow,Deny
+#     Deny from all
+# </FilesMatch>

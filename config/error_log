@@ -1,0 +1,12 @@
+[29-Jan-2024 18:35:53 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/calmvyru/public_html/config/login-script.php:27
+Stack trace:
+#0 /home/calmvyru/public_html/config/login-script.php(27): mysqli->prepare()
+#1 {main}
+  thrown in /home/calmvyru/public_html/config/login-script.php on line 27
+[29-Jan-2024 18:42:09 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'username'@'localhost' (using password: YES) in /home/calmvyru/public_html/config/login-script.php on line 8
+[29-Jan-2024 18:42:12 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'username'@'localhost' (using password: YES) in /home/calmvyru/public_html/config/login-script.php on line 8
+[29-Jan-2024 18:50:06 UTC] PHP Fatal error:  Uncaught Error: mysqli object is already closed in /home/calmvyru/public_html/config/signup-script.php:42
+Stack trace:
+#0 /home/calmvyru/public_html/config/signup-script.php(42): mysqli_query()
+#1 {main}
+  thrown in /home/calmvyru/public_html/config/signup-script.php on line 42
